@@ -1,6 +1,6 @@
 # QuoteDesk
 
-Quotes your clients can accept, written by your own Claude.
+**A remote MCP server and web app.** Claude drafts sales quotes through MCP tools; QuoteDesk stores them, lets the owner edit them, and hosts a link the client can open and accept.
 
 A small service business pastes a client's request into Claude. Claude writes the line items, scope and pricing and sends the quote into QuoteDesk through MCP. The owner edits it in QuoteDesk and shares one link. The client opens the link and clicks Accept, and QuoteDesk records who accepted and when. Later, Claude can ask QuoteDesk which quotes were opened but never answered and help draft the follow-ups.
 
