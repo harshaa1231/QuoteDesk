@@ -1,0 +1,20 @@
+{
+  "name": "quotedesk",
+  "version": "1.0.0",
+  "description": "QuoteDesk: quotes your clients can accept, written by your own Claude via MCP. No AI inside.",
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "dev": "wrangler dev",
+    "db:local": "wrangler d1 execute quotedesk --local --file=schema.sql",
+    "db:remote": "wrangler d1 execute quotedesk --remote --file=schema.sql",
+    "deploy": "wrangler deploy",
+    "test:mcp": "node scripts/test-mcp.mjs"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "wrangler": "^4.160.0"
+  },
+  "private": true,
+  "type": "module"
+}

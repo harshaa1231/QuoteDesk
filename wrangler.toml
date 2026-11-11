@@ -1,0 +1,16 @@
+name = "quotedesk"
+main = "src/index.js"
+compatibility_date = "2025-09-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "quotedesk"
+# Replace with the id printed by: npx wrangler d1 create quotedesk
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[vars]
+# Demo workspace created automatically on first request (for reviewers).
+DEMO_EMAIL = "demo@quotedesk.app"
+DEMO_PASSWORD = "volopay-demo"
+DEMO_MCP_KEY = "demo-volopay"
+DEMO_BUSINESS = "Pixel & Pine Studio"
