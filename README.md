@@ -6,7 +6,27 @@ A small service business pastes a client's request into Claude. Claude writes th
 
 There is no AI inside this app: no OpenAI, Anthropic or other AI keys, SDKs or calls. Claude does the thinking on the customer's own plan; QuoteDesk stores, edits, hosts and tracks.
 
-Built as a 24-hour take-home for Volopay's Founder's Office, Product & Growth role.
+Built end to end in 24 hours, from idea to a live product, as a take-home for Volopay's Founder's Office, Product & Growth role.
+
+## What this project shows
+
+- **Tool design for AI agents.** Five MCP tools with descriptions, JSON input schemas and server instructions written so Claude picks the right tool, fills arguments correctly and tells the user what to do next.
+- **A remote MCP server built from the protocol up.** Hand-written JSON-RPC 2.0 over Streamable HTTP with protocol version negotiation. Works with Claude's custom connectors and the official MCP SDK client.
+- **Guardrails around agent actions.** The server is the source of truth: totals are computed on the server, accepted quotes are locked against edits from Claude, the owner can't accept on the client's behalf, and failures come back as tool errors Claude can recover from.
+- **Shipping a full product, not a demo script.** Data model, auth, owner dashboard, client-facing page, activity log and per-workspace connector keys, deployed on Cloudflare's edge and tested end to end against the live URL.
+- **Product and business thinking.** A clear customer, a reason to exist next to Claude, pricing and unit economics (about ₹13 to serve a ₹499 customer, because the customer's own Claude does the AI work).
+
+## Architecture
+
+```mermaid
+flowchart LR
+    O[Business owner] -->|"asks for a quote"| C["Claude<br/>(owner's own plan)"]
+    C -->|"MCP tools/call<br/>JSON-RPC over HTTP"| W["QuoteDesk<br/>Cloudflare Worker"]
+    W -->|"edit link + client link"| C
+    W <--> D[("Cloudflare D1<br/>SQLite")]
+    O -->|"reviews and edits"| W
+    K[Client] -->|"opens link, accepts"| W
+```
 
 ## Try it
 
@@ -91,3 +111,9 @@ The demo workspace is created automatically on the first request from the values
 ## Next steps
 
 OAuth sign-in for the connector, alerts when a client opens or accepts, a custom domain and logo upload, then a payment link on accepted quotes so the client can pay the advance in the same place.
+
+## Author
+
+Built by Harsha Talapaka, data scientist working on AI search, recommendation and LLM pipelines.
+
+[LinkedIn](https://linkedin.com/in/harsha-talapaka/) · [Portfolio](https://harshaa1231.github.io/HarshaPortfolio.github.io/) · [GitHub](https://github.com/harshaa1231)
